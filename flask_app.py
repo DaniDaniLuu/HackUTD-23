@@ -21,7 +21,7 @@ def test_input():
     credit_score = 778
     # return data_algorithms.debt_income_ratio(monthly_mortgage_payment, gross_monthly_income)
 
-    LTV = get_LTV(appraised_value, down_payment)
+    LTV = data_algorithms.get_LTV(appraised_value, down_payment)
     return LTV
 
     #DTI = ''
