@@ -3,7 +3,14 @@ def good_credit_score(credit_score):
     if credit_score >= 640 and credit_score <= 850:
         return True
 
-def debt_income_ratio(monthly_debt, gross_income):
+def get_LTV(appraised_value, down_payment):
+    return (appraised_value - down_payment) / appraised_value
+
+def PMI_required(LTV):
+    if LTV < 0.8:
+        return True
+
+def get_DTI(monthly_debt, gross_income):
     return monthly_debt / gross_income
 
 def get_FEDTI(monthly_mortgage_payment, gross_income):
