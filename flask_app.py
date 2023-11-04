@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from data_algorithms import get_LTV
+import data_algorithms
 
 app = Flask(__name__)
 
@@ -21,7 +21,7 @@ def test_input():
     monthly_mortgage_payment = 1127.90
     credit_score = 778
 
-    LTV = get_LTV(appraised_value, down_payment)
+    LTV = data_algorithms.get_LTV(appraised_value, down_payment)
     return LTV
 
     #DTI = ''
