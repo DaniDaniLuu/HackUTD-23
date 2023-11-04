@@ -1,3 +1,3 @@
 from flask import Flask, render_template
 
-app = Flask(__)
+app = Flask(__FannieMae__)
