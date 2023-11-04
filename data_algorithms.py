@@ -11,3 +11,5 @@ def get_FEDTI(monthly_mortgage_payment, gross_income):
     
 def get_total_debt(credit_card_payment, car_payment, student_loans_payments, monthly_mortgage_payment):
     return credit_card_payment + car_payment + student_loans_payments + monthly_mortgage_payment
+
+def evaluate_DTI():

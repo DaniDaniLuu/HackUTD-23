@@ -1,10 +1,10 @@
 from flask import Flask, render_template
-
+import data_algorithms
 app = Flask(__name__)
 
 @app.route('/')
 def homepage():
-    
+    return str(test_input())
     return 'HELLO WORLD'
 
 def test_input():
@@ -18,6 +18,7 @@ def test_input():
     loan_amount = 236251.84
     monthly_mortgage_payment = 1127.90
     credit_score = 778
+    return data_algorithms.debt_income_ratio(monthly_mortgage_payment, gross_monthly_income)
 
     #LTV = functionfromdata_algor()
     #DTI = ''
