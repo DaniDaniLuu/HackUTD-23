@@ -1,3 +1,7 @@
 from flask import Flask, render_template
 
-app = Flask(__FannieMae__)
+app = Flask(__name__)
+
+@app.route('/')
+def homepage():
+    return 'HELLO WORLD'
