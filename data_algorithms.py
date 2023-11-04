@@ -40,3 +40,10 @@ def evaluate_DTI(DTI):
         return "This DTI is acceptable, but too high to be preferred by lenders."
     elif DTI <= .36:
         return "This DTI is acceptable, however ensure that no more than 28% of this debt is going to servicing a mortgage."
+
+def evaluate_FEDTI(FEDTI):
+    # These strings can also be replaced with any sort of input validation necessary.
+    if FEDTI <= .28:
+        return "Your FEDTI is acceptable."
+    else:
+        return "Your FEDTI needs to be lower than 28%."
