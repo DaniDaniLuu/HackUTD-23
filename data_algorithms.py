@@ -13,5 +13,8 @@ def PMI_required(LTV):
 def get_DTI(monthly_debt, gross_income):
     return monthly_debt / gross_income
 
+def get_FEDTI(monthly_mortgage_payment, gross_income):
+    return monthly_mortgage_payment / gross_income
+    
 def get_total_debt(credit_card_payment, car_payment, student_loans_payments, monthly_mortgage_payment):
     return credit_card_payment + car_payment + student_loans_payments + monthly_mortgage_payment
