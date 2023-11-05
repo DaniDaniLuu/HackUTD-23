@@ -66,14 +66,14 @@ def calculation():
 
     return jsonify(return_list)
 
-@app.route('/analysis')
+@app.route('/analysis', methods=['GET'])
 def analysis():
     return data_analysis.return_dataframe()
 
-@app.route('/approvebarchart')
+@app.route('/approvebarchart', methods=['GET'])
 def acquireapprovebarchart():
     return jsonify(data_analysis.main(True))
 
-@app.route('/notapprovebarchart')
+@app.route('/notapprovebarchart', methods=['GET'])
 def acquirenotapprovebarchart():
     return jsonify(data_analysis.main(False))
