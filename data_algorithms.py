@@ -1,12 +1,3 @@
-
-def evaluate_credit_score(credit_score):
-    if credit_score >= 670 and credit_score <= 850:
-        return "GOOD"
-    if credit_score >= 640 and credit_score < 670:
-        return "OKAY"
-    if credit_score < 640:
-        return "BAD"
-
 def get_LTV(appraised_value, down_payment):
     return (appraised_value - down_payment) / appraised_value
 
@@ -23,6 +14,14 @@ def get_FEDTI(monthly_mortgage_payment, gross_income):
 def get_total_debt(credit_card_payment, car_payment, student_loans_payments, monthly_mortgage_payment):
     return credit_card_payment + car_payment + student_loans_payments + monthly_mortgage_payment
 
+def evaluate_credit_score(credit_score):
+    if credit_score >= 670 and credit_score <= 850:
+        return "GOOD"
+    if credit_score >= 640 and credit_score < 670:
+        return "OKAY"
+    if credit_score < 640:
+        return "BAD"
+    
 def evaluate_LTV(LTV):
     if LTV < .8:
         return "GOOD"
