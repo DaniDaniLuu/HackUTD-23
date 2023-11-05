@@ -1,0 +1,32 @@
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .loading-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .loading-spinner {
+    width: 100px;
+    height: 100px;
+    border: 8px solid #ccc;
+    border-top: 8px solid #8edaad;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  .loading-text {
+    font-size: 24px;
+    margin-top: 20px;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
