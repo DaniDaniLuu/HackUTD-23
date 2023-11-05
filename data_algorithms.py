@@ -57,7 +57,24 @@ def evaluate_DTI(DTI, monthly_mortgage_payment, total_debt):
 
 def evaluate_FEDTI(FEDTI):
     # These strings can also be replaced with any sort of input validation necessary.
-    if FEDTI <= .28:
+    if FEDTI <= .25:
         return "Your FEDTI is acceptable."
+    elif FEDTI < .25 and FEDTI <= .28:
+        return "Your FEDTI is acceptable, but could be lower."
     else:
         return "Your FEDTI needs to be lower than 28%."
+    
+def approval_status(credit_score, LTV, DTI, FEDTI):
+    if (credit_score >= 670 and credit_score <= 850) or (credit_score >= 640 and credit_score < 670):
+        if (LTV < .80) or (LTV >= .80 and LTV < .95):
+            if (DTI <= .36) or (DTI > .36 and DTI <= .43):
+                if (FEDTI <= .25) or (FEDTI > .25 and FEDTI <= .28):
+                    return True #approved
+                else:
+                    return False
+            else: 
+                return False
+        else:
+            return False
+    else:
+        return False
