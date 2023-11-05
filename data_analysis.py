@@ -3,6 +3,9 @@ import pandas as pd
 import numpy as np
 import data_algorithms
 import json
+# input into df the csv file of HomeBuyerInfo
+file_path = 'HackUTD-2023-HomeBuyerInfo.csv'
+df = pd.read_csv(file_path)
 
 def main():   
     pd.set_option('display.max_rows', None)
@@ -10,9 +13,6 @@ def main():
     pd.set_option('display.max_colwidth', 100)  # Set a width of 100 characters for columns
     pd.set_option('display.width', 120)  # Set the console display width to 120 characters
 
-    # input into df the csv file of HomeBuyerInfo
-    file_path = 'HackUTD-2023-HomeBuyerInfo.csv'
-    df = pd.read_csv(file_path)
     # Expand the columns of our csv to include new EVAL and Totals information
     expand_tabular(df)
     # Create 2 new separate dataframes that total in 10000 entries, but with separate Approval statuses.
@@ -57,13 +57,16 @@ def main():
     # what does the barchart look like. We have for Non-approved. 
     barchartdf = {'impactcs': [good_credit_score_count, okay_credit_score_count, bad_credit_score_count], 'impactltv': [good_ltv_count, okay_ltv_count, bad_ltv_count], 'impactdti': [good_dti_count, good_md_dti_count, okay_dti_count, okay_md_dti_count, bad_dti_count], 'impactfedti': [good_fedti_count, okay_fedti_count, bad_fedti_count]}
     
+    # return json file for barchart
+    return return_barchartjson(barchartdf)
+
+def return_barchartjson (barchartdf):
     barchartdict = barchartdf.to_dict()
     data_json = json.dumps(barchartdict)
+
+    return data_json
     
-    def return_barchartjson ():
-        return data_json
-    
-    def return_dataframe():
+def return_dataframe():
         return df
 
 def expand_tabular(df):    
