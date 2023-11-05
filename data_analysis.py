@@ -7,7 +7,7 @@ import json
 file_path = 'HackUTD-2023-HomeBuyerInfo.csv'
 df = pd.read_csv(file_path)
 
-def main():   
+def main(approve):   
     pd.set_option('display.max_rows', None)
     pd.set_option('display.max_columns', None)
     pd.set_option('display.max_colwidth', 100)  # Set a width of 100 characters for columns
@@ -19,7 +19,7 @@ def main():
     a_df = approved_rows_dataframe(df)
     na_df = not_approved_rows_dataframe(df)
     count = a_df['APPROVAL'].value_counts().get("Approved", 0)
-    na_count = na_df['APPROVAL'].value_counts().get("Not Approved", 0)
+    nacount = na_df['APPROVAL'].value_counts().get("Not Approved", 0)
     # Derive the count of different comparison factors for approved dataframe.
     good_credit_score_count = a_df['EVAL_CS'].value_counts().get("GOOD", 0)
     okay_credit_score_count = a_df['EVAL_CS'].value_counts().get("OKAY", 0)
@@ -35,39 +35,38 @@ def main():
     okay_fedti_count = a_df['EVAL_FEDTI'].value_counts().get("OKAY", 0)
 
     # Derive the count of different comparison factors for not approved dataframe.
-    good_credit_score_count = na_df['EVAL_CS'].value_counts().get("GOOD", 0)
-    okay_credit_score_count = na_df['EVAL_CS'].value_counts().get("OKAY", 0)
-    bad_credit_score_count = na_df['EVAL_CS'].value_counts().get("BAD", 0)
+    ngood_credit_score_count = na_df['EVAL_CS'].value_counts().get("GOOD", 0)
+    nokay_credit_score_count = na_df['EVAL_CS'].value_counts().get("OKAY", 0)
+    nbad_credit_score_count = na_df['EVAL_CS'].value_counts().get("BAD", 0)
 
 
-    good_ltv_count = na_df['EVAL_LTV'].value_counts().get("GOOD", 0)
-    okay_ltv_count = na_df['EVAL_LTV'].value_counts().get("OKAY", 0)
-    bad_ltv_count = na_df['EVAL_LTV'].value_counts().get("BAD", 0)
+    ngood_ltv_count = na_df['EVAL_LTV'].value_counts().get("GOOD", 0)
+    nokay_ltv_count = na_df['EVAL_LTV'].value_counts().get("OKAY", 0)
+    nbad_ltv_count = na_df['EVAL_LTV'].value_counts().get("BAD", 0)
 
-    good_dti_count = na_df['EVAL_DTI'].value_counts().get("GOOD", 0)
-    good_md_dti_count = na_df['EVAL_DTI'].value_counts().get("GOOD-MD", 0)
-    okay_dti_count = na_df['EVAL_DTI'].value_counts().get("OKAY", 0)
-    okay_md_dti_count = na_df['EVAL_DTI'].value_counts().get("OKAY-MD", 0)
-    bad_dti_count = na_df['EVAL_DTI'].value_counts().get("BAD", 0)
+    ngood_dti_count = na_df['EVAL_DTI'].value_counts().get("GOOD", 0)
+    ngood_md_dti_count = na_df['EVAL_DTI'].value_counts().get("GOOD-MD", 0)
+    nokay_dti_count = na_df['EVAL_DTI'].value_counts().get("OKAY", 0)
+    nokay_md_dti_count = na_df['EVAL_DTI'].value_counts().get("OKAY-MD", 0)
+    nbad_dti_count = na_df['EVAL_DTI'].value_counts().get("BAD", 0)
 
-    good_fedti_count = na_df['EVAL_FEDTI'].value_counts().get("GOOD", 0)
-    okay_fedti_count = na_df['EVAL_FEDTI'].value_counts().get("OKAY", 0)
-    bad_fedti_count = na_df['EVAL_FEDTI'].value_counts().get("BAD", 0)
+    ngood_fedti_count = na_df['EVAL_FEDTI'].value_counts().get("GOOD", 0)
+    nokay_fedti_count = na_df['EVAL_FEDTI'].value_counts().get("OKAY", 0)
+    nbad_fedti_count = na_df['EVAL_FEDTI'].value_counts().get("BAD", 0)
 
     # what does the barchart look like. We have for Non-approved. 
-    barchartdf = {'impactcs': [good_credit_score_count, okay_credit_score_count, bad_credit_score_count], 'impactltv': [good_ltv_count, okay_ltv_count, bad_ltv_count], 'impactdti': [good_dti_count, good_md_dti_count, okay_dti_count, okay_md_dti_count, bad_dti_count], 'impactfedti': [good_fedti_count, okay_fedti_count, bad_fedti_count]}
+    #barchartdict = {'impactcs': [ngood_credit_score_count, nokay_credit_score_count, nbad_credit_score_count], 'impactltv': [good_ltv_count, okay_ltv_count, bad_ltv_count], 'impactdti': [good_dti_count, good_md_dti_count, okay_dti_count, okay_md_dti_count, bad_dti_count], 'impactfedti': [good_fedti_count, okay_fedti_count, bad_fedti_count]}
     
-    # return json file for barchart
-    return return_barchartjson(barchartdf)
-
-def return_barchartjson (barchartdf):
-    barchartdict = barchartdf.to_dict()
-    data_json = json.dumps(barchartdict)
-
-    return data_json
+    approved_array = [good_credit_score_count/count, okay_credit_score_count/count, good_ltv_count/count, okay_ltv_count/count, good_dti_count/count, good_md_dti_count/count, okay_dti_count/count, okay_md_dti_count/count, good_fedti_count/count, okay_fedti_count/count]
     
+    notapproved_array = [ngood_credit_score_count/nacount, nokay_credit_score_count/nacount, nbad_credit_score_count/nacount, ngood_ltv_count/nacount, nokay_ltv_count/nacount, nbad_ltv_count/nacount, ngood_dti_count/nacount, ngood_md_dti_count/nacount, nokay_dti_count/nacount, nokay_md_dti_count/nacount, nbad_dti_count/nacount, ngood_fedti_count/nacount, nokay_fedti_count/nacount, nbad_fedti_count/nacount]
+    if (approve == True):
+        return approved_array
+    else:
+        return notapproved_array
+
 def return_dataframe():
-        return df
+        return df.to_json()
 
 def expand_tabular(df):    
 

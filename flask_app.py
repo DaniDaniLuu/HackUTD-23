@@ -66,6 +66,10 @@ def calculation():
 def analysis():
     return data_analysis.return_dataframe()
 
-@app.route('/barchart')
-def acquirebarchart():
-    return data_analysis.main()
+@app.route('/approvebarchart')
+def acquireapprovebarchart():
+    return jsonify(data_analysis.main(True))
+
+@app.route('/notapprovebarchart')
+def acquirenotapprovebarchart():
+    return jsonify(data_analysis.main(False))
