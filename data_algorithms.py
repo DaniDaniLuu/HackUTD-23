@@ -3,7 +3,7 @@ def good_credit_score(credit_score):
     if credit_score >= 640 and credit_score <= 850:
         return True
 """
-# Please evaluate if code is necessary. -> INPUT VALIDATION FOR ALL VALUES AFTER INPUT???
+# Please evaluate if code is necessary. 
 
 def evaluate_credit_score(credit_score):
     if credit_score >= 640 and credit_score <= 850:
