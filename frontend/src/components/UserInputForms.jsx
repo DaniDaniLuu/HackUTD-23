@@ -4,28 +4,47 @@ import { icon } from "@fortawesome/fontawesome-svg-core/import.macro";
 
 const UserInputForms = () => {
   const inputNames = [
-    "Gross Monthly Income",
-    "Credit Payment",
-    "Car Payment",
-    "Student Loan Payment",
-    "House Appraisal",
-    "Down Payment",
-    "Loan Amount",
-    "Monthly Mortgage",
-    "Credit Score",
+    { name: "GMI", value: "Gross Monthly Income" },
+    { name: "creditP", value: "Credit Payment" },
+    { name: "carP", value: "Car Payment" },
+    { name: "studentP", value: "Student Loan Payment" },
+    { name: "house", value: "House Appraisal" },
+    { name: "downP", value: "Down Payment" },
+    { name: "loan", value: "Loan Amount" },
+    { name: "monthly", value: "Monthly Mortgage" },
+    { name: "credit", value: "Credit Score" },
   ];
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    fetch("/calculation", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Handle response from the server if necessary
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <>
       <div className="inputs-container">
-        <form action="">
+        <form onSubmit={handleSubmit} method="post">
           {inputNames.map((inputName) => {
             return (
               <div className="input-group mt-2">
                 <label for={inputName}>{inputName}</label>
                 <input
                   key={inputName}
-                  id={inputName}
+                  name={inputName}
                   className="input-control"
                   type="number"
                 ></input>
