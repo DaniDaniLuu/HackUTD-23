@@ -12,13 +12,41 @@ def data_analysis():
     file_path = 'HackUTD-2023-HomeBuyerInfo.csv'
     df = pd.read_csv(file_path)
 
-    # add empty columns Populate an entire column with values of True or False, depending on if they are approved or not
-    # calculateApproval(CreditScore)
+    # add empty columns and populate with respective values from columns.
     # calculate LTV, DTI, and FEDTI
-    df['LIV'] = df['AppraisedValue'] - df['DownPayment']
-    df['DTI'] = df['MonthlyDebt']/df['GrossMonthlyIncome']
+    df['LTV'] = (df['AppraisedValue'] - df['DownPayment'])/df['AppraisedValue']
+    df['DTI'] = (df['CreditCardPayment'] + df['CarPayment'] + df['StudentLoanPayments'] + df['MonthlyMortgagePayment'])/df['GrossMonthlyIncome']
     df['FEDTI'] = df['MonthlyMortgagePayment']/df['GrossMonthlyIncome']
-    return df.head(5)
+
+    # definte function to evaluate LTV condition
+    def eval_rows_LTV(row):
+        if row['LTV'] < .8:
+            return "GOOD"
+        elif row['LTV'] >= .8 and row['LTV'] <= .95:
+            return "OKAY"
+        else:
+            return "BAD"
+
+
+    df['EVAL_LTV'] = df.apply(eval_rows_LTV, axis=1)
+    #df['Approval'] = 
+
+
+
+
+
+
+    print(df.iloc[0])
+    print(df.iloc[1])
+    print(df.iloc[2])
+    print(df.iloc[3])
+    print(df.iloc[4])
+    print(df.iloc[5])
+    print(df.iloc[6])
+    print(df.iloc[7])
+
+    
+    return 'meow'
     #df['Approval'] = df.apply(filler_func, axis=0, raw=False, result_type=broadcast, args=())
 
     #df['negative_credit_score_impact'] = ''
