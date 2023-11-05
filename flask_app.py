@@ -1,10 +1,10 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 import data_algorithms
 import data_analysis
 
 app = Flask(__name__)
 
-@app.route('/calculation', methods=['GET'])
+@app.route('/calculation', methods=['POST'])
 def calculation():
     # Array of information to pass back with 11 values
     # LTV value, PMI required (True/False), monthly debt value, DTI value, FEDTI value, credit score enum, LTV enum, DTI enum, FEDTI enum, approval status (True/False), total score value
@@ -12,7 +12,7 @@ def calculation():
     return_list = []
     
     # This data would have to be passed in from the jsx form
-    ID = 1
+    #ID = 1 (not relevant to calculation)
     data = request.get_json()
     gross_monthly_income = data[]
     credit_card_payment = request.form.get("Credit Payment")
@@ -61,7 +61,7 @@ def calculation():
     total_score = data_algorithms.total_score(evaluated_credit_score, evaluated_LTV, evaluated_DTI, evaluated_FEDTI)
     return_list.append(total_score)
 
-    return return_list
+    return jsonify(return_list)
 
 @app.route('/analysis')
 def analysis():
