@@ -1,13 +1,16 @@
 from flask import Flask, render_template
 import data_algorithms
+import data_analysis
 
 app = Flask(__name__)
 
 @app.route('/')
 def homepage():
     
-    output = str(test_input())
-    return output
+    #output = str(test_input())
+    #return output
+    # ^ DK Comments
+    return data_analysis.data_analysis()
 
 
 def test_input():
