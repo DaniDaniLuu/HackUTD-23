@@ -38,13 +38,13 @@ const UserInputForms = () => {
     <>
       <div className="inputs-container">
         <form onSubmit={handleSubmit} method="post">
-          {inputNames.map((inputName) => {
+          {inputNames.map((object) => {
             return (
               <div className="input-group mt-2">
-                <label for={inputName}>{inputName}</label>
+                <label for={object.name}>{object.value}</label>
                 <input
-                  key={inputName}
-                  name={inputName}
+                  key={object.name}
+                  id={object.name}
                   className="input-control"
                   type="number"
                 ></input>
