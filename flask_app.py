@@ -64,4 +64,8 @@ def calculation():
 
 @app.route('/analysis')
 def analysis():
-    data_analysis.main()
+    return data_analysis.return_dataframe()
+
+@app.route('/barchart')
+def acquirebarchart():
+    return data_analysis.main()
