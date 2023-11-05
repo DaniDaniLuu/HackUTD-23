@@ -60,6 +60,7 @@ def main(approve):
     approved_array = [good_credit_score_count/count, okay_credit_score_count/count, good_ltv_count/count, okay_ltv_count/count, good_dti_count/count, good_md_dti_count/count, okay_dti_count/count, okay_md_dti_count/count, good_fedti_count/count, okay_fedti_count/count]
     
     notapproved_array = [ngood_credit_score_count/nacount, nokay_credit_score_count/nacount, nbad_credit_score_count/nacount, ngood_ltv_count/nacount, nokay_ltv_count/nacount, nbad_ltv_count/nacount, ngood_dti_count/nacount, ngood_md_dti_count/nacount, nokay_dti_count/nacount, nokay_md_dti_count/nacount, nbad_dti_count/nacount, ngood_fedti_count/nacount, nokay_fedti_count/nacount, nbad_fedti_count/nacount]
+    
     if (approve == True):
         return approved_array
     else:
