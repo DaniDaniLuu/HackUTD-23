@@ -13,8 +13,7 @@ def calculation():
     
     # This data would have to be passed in from the jsx form
     #ID = 1 (not relevant to calculation)
-    data = request.get_json()
-    gross_monthly_income = data[]
+    gross_monthly_income = request.form.get("Credit Payment")
     credit_card_payment = request.form.get("Credit Payment")
     car_payment = request.form.get("Car Payment")
     student_loan_payments = request.form.get("Student Loan Payment")
