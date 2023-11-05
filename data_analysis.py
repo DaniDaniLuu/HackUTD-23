@@ -2,6 +2,7 @@
 import pandas as pd
 import numpy as np
 import data_algorithms
+import json
 
 def main():   
     pd.set_option('display.max_rows', None)
@@ -52,6 +53,18 @@ def main():
     good_fedti_count = na_df['EVAL_FEDTI'].value_counts().get("GOOD", 0)
     okay_fedti_count = na_df['EVAL_FEDTI'].value_counts().get("OKAY", 0)
     bad_fedti_count = na_df['EVAL_FEDTI'].value_counts().get("BAD", 0)
+
+    # what does the barchart look like. We have for Non-approved. 
+    barchartdf = {'impactcs': [good_credit_score_count, okay_credit_score_count, bad_credit_score_count], 'impactltv': [good_ltv_count, okay_ltv_count, bad_ltv_count], 'impactdti': [good_dti_count, good_md_dti_count, okay_dti_count, okay_md_dti_count, bad_dti_count], 'impactfedti': [good_fedti_count, okay_fedti_count, bad_fedti_count]}
+    
+    barchartdict = barchartdf.to_dict()
+    data_json = json.dumps(barchartdict)
+    
+    def return_barchartjson ():
+        return data_json
+    
+    def return_dataframe():
+        return df
 
 def expand_tabular(df):    
 
