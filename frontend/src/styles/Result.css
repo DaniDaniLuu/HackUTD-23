@@ -1,0 +1,14 @@
+.label {
+  font-size: 10px;
+}
+
+.amount {
+  font-size: 25px;
+  color: #81bf96;
+}
+
+.info-container {
+  width: 15vw;
+  align-items: center;
+  justify-content: space-between;
+}
