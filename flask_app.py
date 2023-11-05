@@ -4,7 +4,7 @@ import data_analysis
 
 app = Flask(__name__)
 
-@app.route('/calculation')
+@app.route('/calculation', methods=['GET'])
 def calculation():
     # Array of information to pass back with 11 values
     # LTV value, PMI required (True/False), monthly debt value, DTI value, FEDTI value, credit score enum, LTV enum, DTI enum, FEDTI enum, approval status (True/False), total score value
