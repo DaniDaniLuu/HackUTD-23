@@ -4,18 +4,9 @@ import data_analysis
 
 app = Flask(__name__)
 
-@app.route('/')
-def homepage():
-    
-    #output = str(test_input())
-    #return output
-    # ^ DK Comments
-    data_analysis.main()
-    return 'hello world'
-    
-
-
-def test_input():
+@app.route('/calculation')
+def calculation():
+    # This data would have to be passed in from the jsx form
     ID = 1
     gross_monthly_income = 3103.00
     credit_card_payment = 317.00
@@ -31,8 +22,18 @@ def test_input():
         monthly_mortgage_payment *= 1.01
     credit_score = 778
 
+    monthly_debt = data_algorithms.get_total_debt(credit_card_payment, car_payment, student_loan_payments, monthly_mortgage_payment)
+    DTI = data_algorithms.get_DTI(monthly_debt, gross_monthly_income)
+    FEDTI = data_algorithms.get_FEDTI(monthly_mortgage_payment, gross_monthly_income)
     
-    return LTV
+    # Inputted data's "GOOD"s "OKAY"s "BAD"s etc
+    evaluated_credit_score = data_algorithms.evaluate_credit_score(credit_score)
+    evaluated_LTV = data_algorithms.evaluate_LTV(LTV)
+    evaluated_DTI = data_algorithms.evaluate_DTI(DTI, monthly_mortgage_payment, monthly_debt)
+    evaluated_FEDTI = data_algorithms.evaluate_FEDTI(FEDTI)
 
-    #DTI = ''
-    #FEDTI = ''
+    # Approval status
+    approval_status = data_algorithms.approval_status(evaluated_credit_score, evaluated_LTV, evaluated_DTI, evaluated_FEDTI)
+
+    # Total score
+    total_score = data_algorithms.total_score(evaluated_credit_score, evaluated_LTV, evaluated_DTI, evaluated_FEDTI)
