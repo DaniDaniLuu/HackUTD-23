@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import data_algorithms
 import data_analysis
 
@@ -13,24 +13,25 @@ def calculation():
     
     # This data would have to be passed in from the jsx form
     ID = 1
-    gross_monthly_income = 3103.00
-    credit_card_payment = 317.00
-    car_payment = 374.00
-    student_loan_payments = 250.00
-    appraised_value = 268468.00
-    down_payment = 32216.16
-    loan_amount = 236251.84
+    data = request.get_json()
+    gross_monthly_income = data[]
+    credit_card_payment = request.form.get("Credit Payment")
+    car_payment = request.form.get("Car Payment")
+    student_loan_payments = request.form.get("Student Loan Payment")
+    appraised_value = request.form.get("House Appraisal")
+    down_payment = request.form.get("Down Payment")
+    loan_amount = request.form.get("Loan Amount")
     LTV = data_algorithms.get_LTV(appraised_value, down_payment)
     return_list.append(LTV) # Index @ 0 = LTV
     # Make sure to access monthly_mortgage_payment after the if statement to get accurate value
-    monthly_mortgage_payment = 1127.90
+    monthly_mortgage_payment = request.form.get("Monthly Mortgage")
     if data_algorithms.PMI_required(LTV):
         monthly_mortgage_payment *= 1.01
         return_list.append(True) 
     else:
         return_list.append(False)
 
-    credit_score = 778
+    credit_score = request.form.get("Credit Score")
 
     # Additional calculations based on input
     monthly_debt = data_algorithms.get_total_debt(credit_card_payment, car_payment, student_loan_payments, monthly_mortgage_payment)
