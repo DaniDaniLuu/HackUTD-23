@@ -45,7 +45,10 @@ def evaluate_DTI(DTI, monthly_mortgage_payment, total_debt):
         return ("This DTI is not acceptable. Lowering a DTI can involve transferring high interest loans to a "
                 "low interest credit card, but also consider having too many credit cards can negatively impact home buying power.")
     elif DTI <= .43 and DTI > .36:
-        return "This DTI is acceptable, but too high to be preferred by lenders."
+        if monthly_mortgage_payment / total_debt > .28:
+             return "This DTI is acceptable, but too high to be preferred by lenders, also more than 28% of your monthly debt is going to servicing a mortgage which lenders do not prefer."
+        else:
+            return "This DTI is acceptable, but too high to be preferred by lenders."
     elif DTI <= .36:
         if monthly_mortgage_payment / total_debt > .28:
             return "This DTI is acceptable, however more than 28% of your monthly debt is going to servicing a mortgage which lenders do not prefer."
