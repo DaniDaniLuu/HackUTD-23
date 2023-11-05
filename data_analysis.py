@@ -22,11 +22,10 @@ def data_analysis():
     def eval_rows_LTV(row):
         if row['LTV'] < .8:
             return "GOOD"
-        elif row['LTV'] >= .8 and row['LTV'] <= .95:
+        elif row['LTV'] >= .8 and row['LTV'] < .9500001:
             return "OKAY"
         else:
             return "BAD"
-
 
     df['EVAL_LTV'] = df.apply(eval_rows_LTV, axis=1)
     #df['Approval'] = 
