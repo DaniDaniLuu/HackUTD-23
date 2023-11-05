@@ -160,8 +160,7 @@ def expand_tabular(df):
         total_points = points_credit_score + points_LTV + points_DTI + points_FEDTI
         return total_points
 
-    df['TOTAL_SCORE'] = df.apply(rows_total_score, axis = 1)
-    print(df.iloc[1])    
+    df['TOTAL_SCORE'] = df.apply(rows_total_score, axis = 1)   
 
 
 def approved_rows_dataframe(df):
