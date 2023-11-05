@@ -15,4 +15,4 @@ app.register_blueprint(post.bp)
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

@@ -1,8 +1,9 @@
-from flask import Blueprint
+from flask import Blueprint, request, jsonify
 
-bp = Blueprint('routes', __name__)
+calc_bp = Blueprint('calc', __name__)
 
-@bp.route('/')
+
+@bp.route('/calc')
 def index():
     return "Welcome to the API!"
 
