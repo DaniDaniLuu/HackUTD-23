@@ -10,7 +10,9 @@ def homepage():
     #output = str(test_input())
     #return output
     # ^ DK Comments
-    return data_analysis.data_analysis()
+    data_analysis.main()
+    return 'hello world'
+    
 
 
 def test_input():
