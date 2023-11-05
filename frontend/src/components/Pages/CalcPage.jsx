@@ -31,7 +31,7 @@ const CalcPage = () => {
           Homepage
         </Link>{" "}
       </Header>
-      <div className="content-container">
+      <div className="mb-6 content-container">
         <UserInputForms />
         <div className="style-container">
           <ResultArea />
@@ -40,6 +40,7 @@ const CalcPage = () => {
       <NextButton link= {"/result"}text={"Onwards!"}></NextButton>
       {loading && <div>Loading...</div>}
     </div>
+    
   );
 };
 
