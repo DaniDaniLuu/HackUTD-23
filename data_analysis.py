@@ -76,9 +76,46 @@ def data_analysis():
 
     df['APPROVAL'] = df.apply(approval_rows_status, axis=1)
 
-    print(df.iloc[0])
-    print(df.iloc[1])
-    print(df.iloc[2])
+
+    # acquire total score and store as value in last column.
+    def rows_total_score(row):
+        if row['EVAL_CS'] == "GOOD":
+            points_credit_score = 3.5
+        elif row['EVAL_CS'] == "OKAY":
+            points_credit_score = 2.6
+        else:
+            points_credit_score = 1.1
+        if row['EVAL_LTV'] == "GOOD":
+            points_LTV = 2
+        elif row['EVAL_LTV'] == "OKAY":
+            points_LTV = 1.4
+        else:
+            points_LTV = .8
+        if row['EVAL_DTI'] == "GOOD":
+            points_DTI = 2.5
+        elif row['EVAL_DTI'] == "GOOD-MD":
+            points_DTI = 2.1
+        elif row['EVAL_DTI'] == "OKAY":
+            points_DTI = 1.8
+        elif row['EVAL_DTI'] == "OKAY-MD":
+            points_DTI = 1.4
+        else:
+            points_DTI = .6
+        if row['EVAL_FEDTI'] == "GOOD":
+            points_FEDTI = 2
+        elif row['EVAL_FEDTI'] == "OKAY":
+            points_FEDTI = 1.3
+        else:
+            points_FEDTI = .9
+
+        total_points = points_credit_score + points_LTV + points_DTI + points_FEDTI
+        return total_points
+
+    df['TOTAL_SCORE'] = df.apply(rows_total_score, axis = 1)
+
+
+    print(df.head)
+
 
     
     return 'meow'
