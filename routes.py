@@ -14,12 +14,16 @@ def index():
 @analyze_bp.route('/approvedgraph', methods=['GET'])
 def approvedgraph():
     approval=True
-    return data_analysis.main(approval)
+    approvedarray = data_analysis.main(approval)
+    data = {'array_data': approvedarray}
+    return jsonify(data)
 
 # returns an array of the values we need to create a graph for notapproved factors.
 @analyze_bp.route('/notapprovedgraph', methods=['GET'])
 def notapprovedgraph():
     approval=False
-    return data_analysis.main(approval)
+    notapprovedarray = data_analysis.main(approval)
+    data = {'array_data': notapprovedarray}
+    return jsonify(data)
 
 
