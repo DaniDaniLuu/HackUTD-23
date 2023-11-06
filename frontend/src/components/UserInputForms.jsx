@@ -18,14 +18,14 @@ const UserInputForms = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("/calculation", {
+    fetch("/input", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
     })
-      .then((response) => response.json())
+      //.then((response) => response.json()) no response
       .then((data) => {
         // Handle response from the server if necessary
       })
@@ -46,7 +46,8 @@ const UserInputForms = () => {
                   key={object.name}
                   id={object.name}
                   className="input-control"
-                  type="number"
+                  type="text"
+                  pattern="[-+]?[0-9]*\.?[0-9]+"
                 ></input>
               </div>
             );
