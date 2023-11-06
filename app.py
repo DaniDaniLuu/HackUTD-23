@@ -6,10 +6,10 @@ app.config.from_object(Config)
 
 #importing our routes
 # note that you should change these imports later according to our own route names.
-from routes import index, user, post
-app.register_blueprint(index.bp)
-app.register_blueprint(user.bp)
-app.register_blueprint(post.bp)
+from routes import input_bp, calc_bp, analyze_bp
+app.register_blueprint(input_bp.bp)
+app.register_blueprint(calc_bp.bp)
+app.register_blueprint(analyze_bp.bp)
 
 
 
