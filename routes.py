@@ -181,3 +181,7 @@ def notapprovedgraph():
     notapprovedarray = data_analysis.main(approval)
     data = {'array_data': notapprovedarray}
     return jsonify(data)
+
+# @app.route('/analysis', methods=['GET'])
+#def analysis():
+    #return data_analysis.return_dataframe()
