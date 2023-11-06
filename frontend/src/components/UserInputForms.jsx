@@ -46,8 +46,9 @@ const UserInputForms = () => {
                   key={object.name}
                   id={object.name}
                   className="input-control"
-                  type="text"
-                  pattern="[-+]?[0-9]*\.?[0-9]+"
+                  type="number"
+                  pattern="[0-9]+([\.,][0-9]+)?" 
+                  step="0.01"
                 ></input>
               </div>
             );
